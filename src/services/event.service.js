@@ -33,7 +33,7 @@ class EventService {
             const event = await Event.findByIdAndUpdate(
                 eventId,
                 updateData
-            ).populate('createdBy',);
+            ).populate('createdBy', 'username email');
             
             if (!event) {
                 throw new Error('Event not found');
@@ -49,7 +49,7 @@ class EventService {
             const event = await Event.findByIdAndUpdate(
                 eventId,
                 { isLocked: true }
-            ).populate('createdBy' );
+            ).populate('createdBy', 'username email');
             
             if (!event) {
                 throw new Error('Event not found');
@@ -65,8 +65,8 @@ class EventService {
             const event = await Event.findByIdAndUpdate(
                 eventId,
                 { isLocked: false }
-            ).populate('createdBy');
-            
+            ).populate('createdBy', 'username email');
+
             if (!event) {
                 throw new Error('Event not found');
             }

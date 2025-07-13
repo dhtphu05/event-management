@@ -53,8 +53,8 @@ class RegistrationService {
                     status,
                     updatedAt: new Date()
                 },
-            ).populate('user')
-             .populate('event');
+            ).populate('user', 'username email')
+             .populate('event', 'title date location');
 
             if (!updatedRegistration) {
                 throw new Error('Registration not found');
@@ -72,8 +72,8 @@ class RegistrationService {
             }
 
             const registration = await Registration.findById(registrationId)
-                .populate('user')
-                .populate('event')
+                .populate('user', 'username email')
+                .populate('event', 'title date location')
                 .lean();
 
             return registration;
