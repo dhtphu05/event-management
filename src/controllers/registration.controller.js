@@ -20,9 +20,10 @@ class RegistrationController {
         }
     }
 
-    async getAllRegistrations(req, res) {
+    async getAllRegistrationsByEventId(req, res) {
         try {
-            const registrations = await RegistrationService.getAllRegistrations();
+            const {eventId} = req.params.id;
+            const registrations = await RegistrationService.getRegistrationsByEventId(eventId);
             return res.status(200).json({
                 success: true,
                 data: registrations
